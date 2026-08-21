@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Layout, Menu, Segmented, Space, Tag, Typography } from "antd";
+import { Button, Layout, Menu, Segmented, Space, Tag, Typography } from "antd";
 import {
   ApiOutlined,
   CompassOutlined,
   HomeOutlined,
+  LoginOutlined,
+  LogoutOutlined,
   RocketOutlined,
   ThunderboltOutlined
 } from "@ant-design/icons";
@@ -16,8 +18,13 @@ const { Sider, Content } = Layout;
 
 export function WorkspaceLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isLoginPage = pathname === "/login";
   const selectedKey = pathname.startsWith("/projects/") ? "/studio" : pathname;
   const { locale, isZh, setLocale } = useLanguage();
+
+  if (isLoginPage) {
+    return <div className="auth-shell">{children}</div>;
+  }
 
   return (
     <Layout className="app-shell">
@@ -25,15 +32,15 @@ export function WorkspaceLayout({ children }: { children: React.ReactNode }) {
         <div className="app-brand">
           <Space direction="vertical" size={10}>
             <Tag color="blue" bordered={false} style={{ width: "fit-content", margin: 0 }}>
-              LingtiStudio
+              灵缇视频平台
             </Tag>
             <Typography.Title level={3} style={{ color: "#f5edec", margin: 0 }}>
-              LingtiStudio
+              灵缇多链路平台AI视频在线制作平台
             </Typography.Title>
             <Typography.Paragraph style={{ color: "#c8a8a8", margin: 0 }}>
               {isZh
-                ? "像灵缇一样快速的 AI 视频工作流，覆盖创建、审核、恢复与交付。"
-                : "The greyhound-speed AI video workflow for creation, review, recovery, and delivery."}
+                ? "面向在线脚本、素材、配音、视频片段、审核和交付的 AI 视频生产工作台。"
+                : "AI video production workspace for scripts, assets, voiceover, clips, review, and delivery."}
             </Typography.Paragraph>
             <Segmented
               size="small"
@@ -74,7 +81,12 @@ export function WorkspaceLayout({ children }: { children: React.ReactNode }) {
             {
               key: "/settings",
               icon: <ApiOutlined />,
-              label: <Link href="/settings">Setup</Link>
+              label: <Link href="/settings">{isZh ? "系统设置" : "Settings"}</Link>
+            },
+            {
+              key: "/login",
+              icon: <LoginOutlined />,
+              label: <Link href="/login">{isZh ? "登录" : "Login"}</Link>
             }
           ]}
         />
@@ -82,6 +94,11 @@ export function WorkspaceLayout({ children }: { children: React.ReactNode }) {
           <Space direction="vertical" size={8}>
             <span>{isZh ? "普通运营优先用“快速生成”。" : 'Start with "Quick Create" for simple jobs.'}</span>
             <span>{isZh ? "需要审核、恢复和日志排错时切到“专业工作台”。" : 'Use "Studio" for review, recovery, logs, and debugging.'}</span>
+            <Link href="/login" onClick={() => window.localStorage.removeItem("lingti.auth")}>
+              <Button block icon={<LogoutOutlined />}>
+                {isZh ? "退出登录" : "Logout"}
+              </Button>
+            </Link>
           </Space>
         </div>
       </Sider>

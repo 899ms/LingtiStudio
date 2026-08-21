@@ -320,6 +320,43 @@ a {
   gap: 6px;
 }
 
+.auth-shell {
+  min-height: 100vh;
+  background: var(--page-bg);
+}
+
+.auth-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.auth-card {
+  width: min(520px, 100%);
+}
+
+.demo-video-preview {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(15, 23, 42, 0.92)),
+    radial-gradient(circle at 70% 20%, rgba(74, 222, 128, 0.18), transparent 34%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--ink);
+  font-size: 20px;
+}
+
+.demo-video-preview .anticon {
+  font-size: 44px;
+  color: var(--brand-light);
+}
+
 .workspace-title h1,
 .workspace-title h2,
 .workspace-title h3,

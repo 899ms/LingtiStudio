@@ -84,13 +84,13 @@ export default function HomePage() {
       <section className="hero-panel">
         <div className="hero-copy">
           <Tag color="blue" bordered={false}>
-            LingtiStudio
+            灵缇视频平台
           </Tag>
-          <Typography.Title level={1}>The greyhound-speed AI video workflow</Typography.Title>
+          <Typography.Title level={1}>灵缇多链路平台AI视频在线制作平台</Typography.Title>
           <Typography.Paragraph>
             {isZh
-              ? "Lingti 在中文里是灵缇，速度极快。LingtiStudio 帮你把一个想法变成完整的视频工作流，覆盖脚本生成、审核、素材生产、视频片段、恢复与交付。"
-              : "Lingti means greyhound in Chinese, the fastest dog. LingtiStudio helps you turn an idea into a full video workflow with script generation, review, assets, video clips, recovery, and delivery."}
+              ? "平台将主题创意、脚本生成、脚本审核、素材生成、配音合成、视频片段生成、字幕组装、任务恢复与成片交付集中在统一 Web 工作台内。"
+              : "The platform centralizes creative briefs, script generation, review, asset generation, voiceover, clip generation, subtitles, recovery, and final delivery in one web workspace."}
           </Typography.Paragraph>
           <Space wrap>
             <Link href="/create">
